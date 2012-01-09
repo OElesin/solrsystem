@@ -24,12 +24,42 @@
  * @author Simon Emms <simon@simonemms.com>
  */
 
-/* Load in the functions */
+/**
+ * Load in the functions
+ */
 require_once(dirname(__FILE__).'/functions.php');
 
-/* Load the SolrPHPClient service */
+
+
+
+/**
+ * Load the SolrPHPClient service
+ *
+ * This is written by Apache and provides various
+ * functions - the main one we're after is the
+ * equivalents of mysql_connect() and mysql_query().
+ */
 load_solr('SolrPHPClient/Service.php');
 
+
+
+/**
+ * SolrSystem
+ *
+ * This is the SolrSystem class.  It abstracts the
+ * Solr functionality so that a PHP developer can
+ * use it without having to know too much about how
+ * to formulate a Solr query.
+ *
+ * The syntax is based upon the CodeIgniter active
+ * record class (http://codeigniter.com/user_guide/database/active_record.html)
+ *
+ * This class is written for PHP5 as the Solr-PHP-Client
+ * would need considerable reworking to make it work in
+ * PHP4.
+ *
+ * @author Simon Emms <simon@simonemms.com>
+ */
 class SolrSystem extends Apache_Solr_Service {
 
 
@@ -37,6 +67,19 @@ class SolrSystem extends Apache_Solr_Service {
      * Version of the SolrSystem library
      */
     const SOLRSYSTEM_VERSION = '1.0';
+
+
+
+
+
+
+
+
+    public function  __construct($host = 'localhost', $port = 8180, $path = '/solr/') {
+        parent::__construct($host, $port, $path);
+
+        echo '<pre>'.print_r($this->ping(), true).'</pre>';exit;
+    }
 
 
 }
